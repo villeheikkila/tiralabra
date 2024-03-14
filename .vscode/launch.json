@@ -1,0 +1,52 @@
+{
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "sourceLanguages": [
+                "swift"
+            ],
+            "args": [],
+            "cwd": "${workspaceFolder:tiralabra}/tiralabra",
+            "name": "Debug tiralabra (tiralabra)",
+            "program": "${workspaceFolder:tiralabra}/tiralabra/.build/debug/tiralabra",
+            "preLaunchTask": "swift: Build Debug tiralabra (tiralabra)"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "sourceLanguages": [
+                "swift"
+            ],
+            "args": [],
+            "cwd": "${workspaceFolder:tiralabra}/tiralabra",
+            "name": "Release tiralabra (tiralabra)",
+            "program": "${workspaceFolder:tiralabra}/tiralabra/.build/release/tiralabra",
+            "preLaunchTask": "swift: Build Release tiralabra (tiralabra)"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "sourceLanguages": [
+                "swift"
+            ],
+            "args": [],
+            "cwd": "${workspaceFolder:tiralabra}",
+            "name": "Debug tiralabra",
+            "program": "${workspaceFolder:tiralabra}/.build/debug/tiralabra",
+            "preLaunchTask": "swift: Build Debug tiralabra"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "sourceLanguages": [
+                "swift"
+            ],
+            "args": [],
+            "cwd": "${workspaceFolder:tiralabra}",
+            "name": "Release tiralabra",
+            "program": "${workspaceFolder:tiralabra}/.build/release/tiralabra",
+            "preLaunchTask": "swift: Build Release tiralabra"
+        }
+    ]
+}
