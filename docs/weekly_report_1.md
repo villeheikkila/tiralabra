@@ -18,6 +18,10 @@ The basifcs of how huffman coding works
 
 Write at least a part of the first algo
 
+### LLM usage
+
+I used Raycast AI to spar with ideas on what tasks to pick.
+
 ## Hour keeping
 
 | Day   | Time Spent (hours) | Description                                                                                                        |
