@@ -1,11 +1,11 @@
 import Foundation
 
 func main() {
-  print("Hello, World!")
+    print("Hello, World!")
 }
 
 main()
 
 func combine(_ a: Int, _ b: Int) -> Int {
-  return a + b
+    return a + b
 }
