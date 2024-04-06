@@ -1,0 +1,19 @@
+TKO-äly 15 vuotta: katsaus ainejärjestön historiaan
+
+Puheenjohtaja Marja Huovinen
+
+Helsingin yliopiston tietojenkäsittelytieteen opiskelijoiden ainejärjestö TKO-äly ry perustettiin 10.11.1988. Järjestö täyttää siis tänä syksynä 15 vuotta. Nimessä oleva lyhenne TKO on peräisin koulutusalan vanhasta nimityksestä tietojenkäsittelyoppi. Perustamiskokouksessa hyväksyttyjen sääntöjen mukaan yhdistyksen tarkoitus on toimia jäsentensä etujärjestönä opiskeluun ja vapaa-aikaan liittyvissä asioissa.
+
+TKO-älyn toimintaan kuuluivat alusta saakka muun muassa yritysvierailut, saunaillat ja sähly, jotka ovat oleellinen osa toimintaa tänäkin päivänä. Alan opiskelijajärjestöjen yhteisissä tapahtumissa kuten ATK-yhteistyöpäivillä (ATK-ytp) ja Nordic University Computer Club Conferencessa (NUCCC), sekä laajempia opiskelijamassoja kokoavassa Akateemisen kyykän MM-kisoissa on käynyt TKO-älyn edustajia alusta lähtien innokkaasti. Tapahtumissa vilkkuvia iloisenkeltaisia haalareitakin alettiin tilata jo toiminnan alkumetreillä. Monet keskeiset tapahtumat kuten fuksisuunnistus ja fuksisauna on järjestetty yli kymmenen vuoden ajan. Toisaalta jäsenistön ja toimijoiden määrän kasvaessa syntyy jatkuvasti myös uusia toimintamuotoja.
+
+Vuoden 2001 juhlatunnelmia (kuva: Misa Munde)
+Vaikka näkyvin osa ainejärjestön toimintaa on vapaa-ajan puoli, TKO-äly-aktiivit ovat painineet ahkerasti myös opintoasioiden parissa. Tällä hetkellä käynnissä oleva tutkintorakenneuudistus ei suinkaan ole ensimmäinen, johon TKO-äly pääsee ottamaan kantaa opiskelijoiden äänitorvena. Esimerkiksi cum laude -valinnaisten asema tutkintouudistuksessa askarutti jo ensimmäisenä toimintavuotena 1989 ja asiasta laadittiin kannanotto laitoksen silloiselle esimiehelle. Opintoihin liittyen ei pidä myöskään unohtaa, että tietojenkäsittelytieteen opiskelijatuutorien rekrytointi, tuutori- ja fuksitoiminnan suunnittelu ja tuutoreiden yhteistyö hoituu ainejärjestön voimin.
+
+TKO-äly sai neuvoteltua laitokselle opiskelijoiden oman oleskelutilan huoneeseen A317 vuonna 1989. Nykyään käytetty Gurula-nimitys vakiintui tosin vasta 1995, kun hallitus valitsi nimiehdotuksista sopivimman. Samana vuonna taukotilaan alettiin myös tilata Helsingin Sanomia ja Aku Ankkaa ja otettiin käyttöön virtuaalikassajärjestelmä virvokkeiden oston helpottamiseksi. Gurulan pelivalikoima on jatkuvasti karttunut, joten luentotauoilla tuskin iskee tekemisen puute jos paikkaan kotiutuu, varsinkin jos opettelee pelaamaan Go:ta. Hengailun lisäksi Gurulassa voi myös tehdä harjoitustehtäviä porukalla.
+
+Tietojenkäsittelytieteen laitos ja TKO-äly tekevät nykyään yhteistyötä monella tapaa. Ainejärjestön hallitus on ollut mukana laitoksen suunnittelu- ja strategiapäivillä ja järjestön hallitus ja virkailijat on vuosittain kutsuttu keskustelemaan laitoksen johtajan kanssa ajankohtaisista asioista, tänä vuonna parikin kertaa. Opiskelijaedustajat laitoksen eri työryhmiin etsitään ainejärjestön kautta, ja TKO-äly koordinoi myös laitoksen johtoryhmän opiskelijajäsenten valintaa yliopiston hallintovaaleissa. Järjestö tiedottaa ajankohtaisista opintoasioista jäsenistölleen ja tarvittaessa pyrkii kartoittamaan opiskelijoiden mielipiteitä.
+
+Opintoasioissa tapahtuvan yhteistyön lisäksi laitos tukee TKO-älyn vuosijuhlia. TKO-älyn 15-vuotissynttäreitä juhlistetaan perinteisellä iltajuhlalla perjantaina 14.11. Juhlapuhujana on laitoksen johtaja Jukka Paakki. Vuosijuhlat ovat järjestölle jo vankka traditio, vuosipäivää juhlittiin pöytäkirjojen mukaan ensimmäistä kertaa 1990 kun täyteen tuli 2 vuotta ja ainakin vuodesta 1996 lähtien näyttävä pukujuhla on järjestetty vuosittain.
+
+TKO-äly siirtyi tiedotuksessa www-aikaan jo 1995. Nyt pääosa tiedotuksesta on sähköistä, käytössä on www-sivujen lisäksi oma uutisryhmä ja sähköpostilista. Yhdistykseen ja sen toimintaan voi tutustua tarkemmin osoitteessa http://www.cs.helsinki.fi/tko-aly/.
+

@@ -1,4 +1,4 @@
-## Weekly Report, week 2
+## Weekly Report, week 3
 
 ### What have I done this week?
 

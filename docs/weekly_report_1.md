@@ -10,7 +10,7 @@ The scaffold is there and I have some idea what to do next
 
 ### What I Learned This Week / Today
 
-The basifcs of how huffman coding works
+The basics of how huffman coding works
 
 ### What Was Unclear Or Difficult?
 
