@@ -2,35 +2,37 @@ import Foundation
 
 /*
 * Huffman algorithm implementation
-* Enum is used as a namespace for the algorithm
 */
 enum Huffman {
+  // --- types
+  typealias Codes = [String: String]
+
   /*
   * this is a model that contains both the codes and the content
   * it can be used to decode and encode these values into a file
   */
   struct Model: Codable {
-    let codes: [String: String]
+    let codes: Codes
     let content: String
   }
 
   // --- encode
   private class Node: Comparable {
-    // frequency of the encoded data
+    // frequency of the content
     let frequency: Int
-    var data: String
+    var content: String
 
     var left: Node?
     var right: Node?
 
-    init(frequency: Int, data: String) {
+    init(frequency: Int, content: String) {
       self.frequency = frequency
-      self.data = data
+      self.content = content
     }
 
     init(frequency: Int, character: Character) {
       self.frequency = frequency
-      self.data = String(character)
+      self.content = String(character)
     }
 
     // make a huffman coding node comparable by frequency, lower frequency is higher priority
@@ -39,7 +41,7 @@ enum Huffman {
     }
 
     static func == (lhs: Node, rhs: Node) -> Bool {
-      return lhs.frequency == rhs.frequency && lhs.data == rhs.data
+      return lhs.frequency == rhs.frequency && lhs.content == rhs.content
     }
   }
 
@@ -64,11 +66,11 @@ enum Huffman {
       let right = nodes.removeLast()
 
       // combine the the nodes and their frequencies
-      let data = "\(left.data)\(right.data)"
+      let content = "\(left.content)\(right.content)"
       let frequency = left.frequency + right.frequency
 
       // append the comined node back to the nodes
-      let parent = Node(frequency: frequency, data: data)
+      let parent = Node(frequency: frequency, content: content)
       parent.left = left
       parent.right = right
       nodes.append(parent)
@@ -94,10 +96,10 @@ enum Huffman {
     return encodedAsString
   }
 
-  private static func generateHuffmanCode(_ node: Node?, prefix: String) -> [String: String] {
+  private static func generateHuffmanCode(_ node: Node?, prefix: String) -> Codes {
     guard let node else { return [:] }
     guard let leftNode = node.left, let rigthNode = node.right else {
-      return [node.data: prefix]
+      return [node.content: prefix]
     }
 
     var left = generateHuffmanCode(leftNode, prefix: prefix + "0")
@@ -110,12 +112,12 @@ enum Huffman {
     return left
   }
 
-  private static func encodeContentWithHuffmanCodes(content: String, codes: [String: String])
+  private static func encodeContentWithHuffmanCodes(content: String, codes: Codes)
     -> String
   {
     // go through each character in the content and encode it
-    content.reduce("") { result, char in
-      if let code = codes[String(char)] {
+    content.reduce("") { result, character in
+      if let code = codes[String(character)] {
         result + code
       } else {
         result
@@ -135,11 +137,11 @@ enum Huffman {
     var currentCode = ""
 
     // loop through the encoded content and decode the content
-    for character in model.content {
-      // increment the code by on each loop until matching value is found
-      currentCode.append(character)
-      if let decodedValue = model.codes.first(where: { _, code in code == currentCode }) {
-        // the key is the decoded character
+    for currentCodePart in model.content {
+      // construct the code until it is found in the dictionary
+      currentCode.append(currentCodePart)
+      // code is the value in the dictionary, key is the coded data
+      if let decodedValue = model.codes.first(where: { _, value in value == currentCode }) {
         decodedContent.append(decodedValue.key)
         // reset the code and start again until the entire content is decoded
         currentCode = ""
