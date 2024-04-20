@@ -14,6 +14,9 @@
 
 [Weekly Report 4](./docs/weekly_report_4.md)
 
+[Weekly Report 5](./docs/weekly_report_5.md)
+
+
 ## How to test
 
 1. Install swift toolchain for your platform

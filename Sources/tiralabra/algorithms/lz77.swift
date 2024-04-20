@@ -1,60 +1,63 @@
 import Foundation
 
-/*
+/**
  * LZ77 algorithm implementation
  */
 enum LZ77 {
-    // --- types
+    /**
+      A token that represents a part of the LZ77 encoded data
+     - `distance`: The distance to the start of the matched substring going backwards
+     - `length`: The length of the matched substring
+     - `nextChar`: A UTF-8 character that follows the matched substring if it exists
+      */
     typealias Token = (distance: Int, length: Int, nextChar: Character?)
+
+    /**
+     A list of tokens that represent LZ77 encoded data
+     */
     typealias Tokens = [Token]
 
-    enum LZ77Error: Error {
-        case dataConverionFailed
+    /**
+     Converts a string into LZ77 encoded binary data
+     - Parameters:
+       - content: The string to be converted into LZ77 tokens
+     - Returns: A data object containing the LZ77 encoded binary representation of the input string
+     */
+    static func stringToData(_ string: String) -> Data {
+        tokensToData(stringToTokens(string))
     }
 
-    // TEMP!!! This in very inefficient and should be replaced with a more efficient data structure
-    struct LZ77Tuple: Codable {
-        var distance: Int
-        var length: Int
-        var nextChar: String?
-
-        init(encoding: Token) {
-            distance = encoding.distance
-            length = encoding.length
-            nextChar = if let nextChar = encoding.nextChar { String(nextChar) } else { nil }
+    static func tokensToData(_ tokens: Tokens) -> Data {
+        var data = Data()
+        for token in tokens {
+            var distance = UInt16(token.distance).bigEndian
+            withUnsafeBytes(of: &distance) { bytes in
+                data.append(contentsOf: bytes)
+            }
+            var length = UInt8(token.length)
+            withUnsafeBytes(of: &length) { bytes in
+                data.append(contentsOf: bytes)
+            }
+            if let nextChar = token.nextChar, let charData = String(nextChar).data(using: .utf8) {
+                data.append(charData)
+            }
+            data.append(0)
         }
+        return data
     }
 
-    // --- file operations
-    static func decodeFromFileToFile(inputPath: String, outputPath: String) throws {
-        let fileContent = try FileUtils.readFileContent(path: inputPath)
-        guard let jsonData = fileContent.data(using: .utf8) else {
-            throw LZ77Error.dataConverionFailed
-        }
-        let lz77Tuples = try JSONDecoder().decode([LZ77Tuple].self, from: jsonData)
-        let decodedString = LZ77.decode(
-            lz77Tuples.map {
-                Token(distance: $0.distance, length: $0.length, nextChar: $0.nextChar?.first)
-            })
-        try FileUtils.writeTextToFile(filePath: outputPath, text: decodedString)
-    }
-
-    static func encodeFromFileToFile(inputPath: String, outputPath: String) throws {
-        let fileContent = try FileUtils.readFileContent(path: inputPath)
-        let encoded = LZ77.encode(fileContent)
-        let jsonEncoded = try JSONEncoder().encode(encoded.map { LZ77Tuple(encoding: $0) })
-        guard let jsonString = String(data: jsonEncoded, encoding: .utf8) else {
-            throw LZ77Error.dataConverionFailed
-        }
-        try FileUtils.writeTextToFile(filePath: "\(outputPath).lz77", text: jsonString)
-    }
-
-    // --- encode
-    static func encode(_ content: String, maxlookBackDistance: Int = 128) -> Tokens {
-        let chars = content.map { $0 }
+    /**
+      Converts a string into a sequence of LZ77 tokens
+      - Parameters:
+        - string: The string to be converted into LZ77 tokens
+        - maxlookBackDistance: The maximum distance to look back to find a matching string, default value is 128
+      - Returns: An array of tokens, where each token is a tuple containing the distance, length, and optionally the next character
+     */
+    static func stringToTokens(_ string: String, maxlookBackDistance: Int = 128) -> Tokens {
+        let chars = string.map { $0 }
         var currentIndex = 0
         var encodedContent: Tokens = []
-
+        // iterate over all the characters
         while currentIndex < chars.count {
             var distance = 0
             var length = 0
@@ -83,8 +86,56 @@ enum LZ77 {
         return encodedContent
     }
 
-    // --- decode
-    static func decode(_ tokens: Tokens) -> String {
+    /**
+     Converts a data object into a decoded string
+     - Parameters:
+        - data: The LZ77 encoded data
+     - Returns: The decoded string
+     */
+    static func dataToString(_ data: Data) -> String {
+        tokensToString(dataToTokens(data))
+    }
+
+    /**
+     Converts binary data into LZ77 tokens
+     - Parameters:
+        - data: The binary data containing encoded tokens
+     - Returns: An array of tokens, with each token containing a distance, a length and the next character if it exists
+     */
+    static func dataToTokens(_ data: Data) -> Tokens {
+        var tokens = Tokens()
+        let dataCount = data.count
+        var index = 0
+        // decode the tokens byte by byte
+        while index < dataCount {
+            let distance = Int(data[index]) << 8 | Int(data[index + 1])
+            index += 2
+            let length = Int(data[index])
+            index += 1
+            var nextChar: Character? = nil
+            if index < dataCount && data[index] != 0 {
+                var charData = Data()
+                while index < dataCount && data[index] != 0 {
+                    charData.append(data[index])
+                    index += 1
+                }
+                if let charString = String(data: charData, encoding: .utf8) {
+                    nextChar = charString.first
+                }
+            }
+            // skip the delimiter
+            index += 1
+            tokens.append((distance, length, nextChar))
+        }
+        return tokens
+    }
+
+    /**
+     Reconstructs a string from an array of LZ77 tokens
+     - Parameter tokens: An array of LZ77 tokens
+     - Returns: The decoded original string
+     */
+    static func tokensToString(_ tokens: Tokens) -> String {
         var decodedContent = ""
         // iterate over the tokens and reconstruct the original content
         for token in tokens {
