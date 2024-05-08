@@ -41,6 +41,7 @@ enum LZ77 {
             if let nextChar = token.nextChar, let charData = String(nextChar).data(using: .utf8) {
                 data.append(charData)
             }
+            // add delimiter after each token
             data.append(0)
         }
         return data
@@ -108,17 +109,23 @@ enum LZ77 {
         var index = 0
         // decode the tokens byte by byte
         while index < dataCount {
+            // assemble 16-bit integer from two consecutive bytes
             let distance = Int(data[index]) << 8 | Int(data[index + 1])
+            // move two bytes ahead to get the length
             index += 2
             let length = Int(data[index])
+            // move another byte to get the first character
             index += 1
+            // tmp variable to store the character
             var nextChar: Character? = nil
             if index < dataCount && data[index] != 0 {
                 var charData = Data()
+                // go on till we hit the delimiter
                 while index < dataCount && data[index] != 0 {
                     charData.append(data[index])
                     index += 1
                 }
+                // decode the utf8 encoded string from the char data
                 if let charString = String(data: charData, encoding: .utf8) {
                     nextChar = charString.first
                 }
