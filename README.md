@@ -16,6 +16,7 @@
 
 [Weekly Report 5](./docs/weekly_report_5.md)
 
+[Weekly Report 6](./docs/weekly_report_6.md)
 
 ## How to test
 

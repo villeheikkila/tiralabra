@@ -18,7 +18,8 @@ Converting LZ77 to a binary format in a sane way
 
 ### What Will I Do Next?
 
-Add the missing tests, fix possible bugs, clean up the remaining files and large tests files. Finish documentation
+Add tests for individual parts of the code to see why the compression does work as expected.
+Fix possible bugs, clean up the remaining files and large tests files. Finish documentation
 
 ### LLM usage
 
