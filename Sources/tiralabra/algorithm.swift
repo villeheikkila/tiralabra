@@ -25,7 +25,7 @@ enum Algorithm: String {
             if let initial = intialFileSize, let encoded = encodedFileSize {
                 print("Initial size: \(initial) bytes")
                 print("LZ77 encoded size: \(encoded) bytes")
-                print("LZ77 compression ratio: \(Double(initial) / Double(encoded))")
+                print("LZ77 compression: \((1 - (Double(encoded) / Double(initial))) * 100)%")
             }
         case .huffman:
             /*
@@ -50,7 +50,7 @@ enum Algorithm: String {
                 print("Initial file size: \(initial) bytes")
                 print("Huffman coded size: \(encoded) bytes")
                 print("Huffman codes size: \(codes) bytes")
-                print("Huffman compression ratio: \(Double(initial) / Double(encoded))")
+                print("Huffman compression: \((1 - (Double(encoded) / Double(initial))) * 100)%")
                 print("Huffman compression ratio with codes: \(Double(initial) / Double(encoded + codes))")
             }
         }

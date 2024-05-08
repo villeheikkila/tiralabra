@@ -30,7 +30,7 @@ enum LZ77 {
     static func tokensToData(_ tokens: Tokens) -> Data {
         var data = Data()
         for token in tokens {
-            var distance = UInt16(token.distance).bigEndian
+            var distance = UInt8(token.distance)
             withUnsafeBytes(of: &distance) { bytes in
                 data.append(contentsOf: bytes)
             }
@@ -51,10 +51,10 @@ enum LZ77 {
       Converts a string into a sequence of LZ77 tokens
       - Parameters:
         - string: The string to be converted into LZ77 tokens
-        - maxlookBackDistance: The maximum distance to look back to find a matching string, default value is 128
+        - maxlookBackDistance: The maximum distance to look back to find a matching string, default value is 255 (max value that fits into UInt8)
       - Returns: An array of tokens, where each token is a tuple containing the distance, length, and optionally the next character
      */
-    static func stringToTokens(_ string: String, maxlookBackDistance: Int = 128) -> Tokens {
+    static func stringToTokens(_ string: String, maxlookBackDistance: Int = 255) -> Tokens {
         let chars = string.map { $0 }
         var currentIndex = 0
         var encodedContent: Tokens = []
@@ -109,10 +109,10 @@ enum LZ77 {
         var index = 0
         // decode the tokens byte by byte
         while index < dataCount {
-            // assemble 16-bit integer from two consecutive bytes
-            let distance = Int(data[index]) << 8 | Int(data[index + 1])
-            // move two bytes ahead to get the length
-            index += 2
+            // the first byte is the distance as Int8
+            let distance = Int(data[index])
+            // move one byte ahead to get the length
+            index += 1
             let length = Int(data[index])
             // move another byte to get the first character
             index += 1
