@@ -88,43 +88,6 @@ enum Huffman {
         }
     }
 
-    static func bitStringToData(string: String) -> Data {
-        var data = Data(capacity: string.count / 8)
-
-        var bitsProcedded = 0
-        var currentByte: UInt8 = 0
-
-        // convert character bits into bytes
-        for bit in string {
-            if bit == "1" {
-                // shift the current byte left by one and add 1
-                currentByte = (currentByte << 1) | 1
-            } else if bit == "0" {
-                // shift the current byte left by one, adding 0
-                currentByte <<= 1
-            } else {
-                fatalError("invalid bit string")
-            }
-
-            bitsProcedded += 1
-            if bitsProcedded % 8 == 0 {
-                // add the full byte to the data object
-                data.append(currentByte)
-                currentByte = 0
-            }
-        }
-
-        // pad the last byte if needed
-        if bitsProcedded % 8 != 0 {
-            let shiftsToCompleteAByte = 8 - (bitsProcedded % 8)
-            // shift as many times as required
-            currentByte <<= shiftsToCompleteAByte
-            data.append(currentByte)
-        }
-
-        return data
-    }
-
     class Node: Comparable {
         // frequency of the content
         let frequency: Int

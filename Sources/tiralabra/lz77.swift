@@ -64,14 +64,18 @@ enum LZ77 {
             var length = 0
             var isMatchFound = false
             // search for the longest match in the look back window
+            // compare characters until the end of the data is reached or characters no longer match
+            // begin from either (currentIndex - maxlookBackDistance) or 0 whichever is larger and end before the current index
             for lookBackDistance in max(currentIndex - maxlookBackDistance, 0) ..< currentIndex {
                 var matchLength = 0
+                // compare characters until the end of the data is reached or characters no longer match
                 while currentIndex + matchLength < chars.count
                     && chars[matchLength + lookBackDistance] == chars[matchLength + currentIndex]
                 {
                     isMatchFound = true
                     matchLength += 1
                 }
+                // check if a match was found and if it’s the longest match seen so far.
                 if isMatchFound && matchLength > length {
                     distance = currentIndex - lookBackDistance
                     length = matchLength
