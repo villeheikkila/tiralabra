@@ -4,6 +4,18 @@ import Foundation
  * This function handles parsing the command line arguments and calling the appropriate function
  */
 func cli(arguments: [String]) {
+    guard arguments.count == 5 else {
+        return print(
+            """
+            This program requires four parameters. They must be in the following format, separated by spaces:
+            encode | decode
+            lz77 | huffman
+            input
+            output
+            """
+        )
+    }
+
     guard let operation = Operation(rawValue: arguments[1]) else {
         print("Unsupported operation. Pick between 'encode' and 'decode'.")
         return

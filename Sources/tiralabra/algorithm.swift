@@ -12,7 +12,6 @@ enum Algorithm: String {
 
     case lz77, huffman
 
-    // TODO: This a total mess
     func encode(_ inputPath: String, _ outputPath: String) throws {
         switch self {
         case .lz77:
@@ -25,7 +24,7 @@ enum Algorithm: String {
             if let initial = intialFileSize, let encoded = encodedFileSize {
                 print("Initial size: \(initial) bytes")
                 print("LZ77 encoded size: \(encoded) bytes")
-                print("LZ77 compression: \((1 - (Double(encoded) / Double(initial))) * 100)%")
+                print("LZ77 compression \((1 - (Double(encoded) / Double(initial))) * 100)%")
             }
         case .huffman:
             /*
@@ -50,8 +49,7 @@ enum Algorithm: String {
                 print("Initial file size: \(initial) bytes")
                 print("Huffman coded size: \(encoded) bytes")
                 print("Huffman codes size: \(codes) bytes")
-                print("Huffman compression: \((1 - (Double(encoded) / Double(initial))) * 100)%")
-                print("Huffman compression ratio with codes: \(Double(initial) / Double(encoded + codes))")
+                print("Huffman compression \((1 - (Double(encoded) / Double(initial))) * 100)%")
             }
         }
     }
