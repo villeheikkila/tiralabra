@@ -19,10 +19,6 @@ How to efficiently compress text using at least two different algorthms and comp
 
 The input is text and output is compressed text and the necessary artifacts to decode the compressed text
 
-### Time Complexity
-
-// TODO
-
 ### Programming language
 
 I plan to write this project in Swift. I'm well versed in Swift, Dart and TypeScript.
